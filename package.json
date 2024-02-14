@@ -1,0 +1,29 @@
+{
+  "name": "playwright-docker-udemy-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean:reports": "rimraf allure-report allure-results && mkdirp allure-report allure-results",
+    "clean:reportsmac": "rm -rf allure-report allure-results && mkdirp - p allure-report allure-results",
+    "generate:reports": "npx allure generate ./allure-results/ --clean",
+    "open:reports": "npx allure open ./allure-report/",
+    "pretest": "npm run clean:reports",
+    "posttest": "npm run generate:reports && npm run open:reports",
+    "execute:script": "npx playwright test tests/orangeHrmLoigin.spec.ts --project=chromium",
+    "test": "npm run execute:script || npm run posttest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.41.2",
+    "@types/node": "^20.11.17",
+    "allure-commandline": "^2.27.0",
+    "allure-playwright": "^2.12.0",
+    "csv-parse": "^5.5.3",
+    "luxon": "^3.4.4",
+    "mkdirp": "^3.0.1",
+    "rimraf": "^5.0.5"
+  }
+}
